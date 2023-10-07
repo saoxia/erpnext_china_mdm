@@ -217,4 +217,4 @@ required_apps = ['digitwise/erpnext_china']
 
 
 
-after_install = "mdm.setup.after_install.operations.install_fixtures.install"
+after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtures.install"
