@@ -1,10 +1,10 @@
-app_name = "erpnext_china"
-app_title = "ERPNext China"
+app_name = "erpnext_china_mdm"
+app_title = "ERPNext China MDM"
 app_publisher = "Digitwise Ltd."
-app_description = "ERPNext中国本地化"
+app_description = "Medical Device Manufacturers（中国本地化的ERPNext医疗器械制造业解决方案）"
 app_email = "lingyu_li@foxmail.com"
 app_license = "mit"
-required_apps = [erpnext_china]
+required_apps = ['digitwise/erpnext_china']
 
 # Includes in <head>
 # ------------------
