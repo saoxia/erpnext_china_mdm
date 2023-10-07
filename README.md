@@ -1,7 +1,7 @@
 ## Medical Device Manufacturers（中国本地化的ERPNext医疗器械制造业解决方案）
 
 ### 功能介绍
-使用ERPNext China作为基础，针对中国本地化医疗器械制造业进行定制。
+使用ERPNext China作为基础，针对中国本地化医疗器械、化妆品、日化家清、食品饮料等制造业进行定制。
 #### 默认开启的功能：
 开发中
 
