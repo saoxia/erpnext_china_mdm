@@ -239,7 +239,7 @@
    "options": "Allowed To Transact With"
   },
   {
-   "defaule": "RMB",
+   "defaule": "CNY",
    "fieldname": "default_currency",
    "fieldtype": "Link",
    "ignore_user_permissions": 1,
@@ -248,8 +248,10 @@
    "options": "Currency"
   },
   {
+   "default": "标准销售",
    "fieldname": "default_price_list",
    "fieldtype": "Link",
+   "hidden": 1,
    "ignore_user_permissions": 1,
    "label": "Default Price List",
    "options": "Price List"
@@ -261,6 +263,7 @@
   {
    "fieldname": "language",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Print Language",
    "options": "Language"
   },
@@ -483,6 +486,7 @@
   {
    "fieldname": "opportunity_name",
    "fieldtype": "Link",
+   "hidden":1,
    "label": "From Opportunity",
    "no_copy": 1,
    "options": "Opportunity",
