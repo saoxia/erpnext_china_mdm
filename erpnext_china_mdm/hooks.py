@@ -218,3 +218,7 @@ required_apps = ['saoxia/erpnext_china']
 
 
 after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtures.install"
+
+doctype_js = {
+    "Customer" : "erpnext_china_mdm/mdm/doctype/customer/customer.js",
+}
