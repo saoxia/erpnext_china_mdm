@@ -15,10 +15,6 @@ def install(country='China'):
 	install_user()  # 添加测试账号
 
 
-
-
-
-@contextmanager
 def install_roles():
 	import csv
 	premission_filepath = Path(__file__).parent.parent / "data" / 'premission.csv'
@@ -28,10 +24,10 @@ def install_roles():
 		#添加role
 		roles = []
 		for line in reader:
-			roles.append({'role': line['role']})
-		for role_name in list(set(roles)):
-			frappe.get_doc({'doctype':'Role','role_name':role_name}).insert()
-		frappe.db.commit()
+			if line['role'] not in roles:
+				frappe.get_doc({'doctype':'Role','role_name':line['role']}).insert()
+				frappe.db.commit()
+				roles.append(line['role'])
 
 		#添加premission
 		premissions = []
@@ -59,7 +55,8 @@ def install_roles():
 	
 	# 设置模块集合的权限
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'CRM'})
-	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'销售'})
+	frappe.db.commit()
+	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'Selling'})
 	frappe.db.commit()
 
 
@@ -68,24 +65,14 @@ def install_user(user_email=None,roles=None):
 
 	# 添加测试账号
 	user_info = {'doctype':'User',
-				'email':"bmyxsyx1@foxmail.com",
+				'email':"sale_a1@foxmail.com",
 				'username': 'A团队销售一线1',
 				'first_name': 'A团队销售一线1'}
 	frappe.get_doc(user_info).insert()
 	frappe.db.commit()
 	# 为测试账号添加角色
-	user = frappe.get_doc("User", "atdxsyx1@foxmail.com")
+	user = frappe.get_doc("User", "sale_a1@foxmail.com")
 	user.add_roles("销售一线")
 	frappe.db.commit()
 	# 为测试账号添加模块组
 	user.db_set('module_profile','销售',commit=True)
-
-
-
-doc = frappe.get_doc({
-    'doctype': 'Module Profile',
-    'title': 'New Task'
-})
-
-
-frappe.get_doc({'doctype':'Module Profile','module_profile_name':'销售111'}).insert()
