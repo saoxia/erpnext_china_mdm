@@ -1,7 +1,20 @@
 role,permlevel,doctype,ptype,value
-销售一线,0,Lead Source,select,1
-销售一线,0,Lead Source,read,1
 销售一线,0,Lead,select,1
 销售一线,0,Lead,read,1
 销售一线,0,Lead,write,1
 销售一线,0,Lead,create,1
+销售一线,0,Lead Source,select,1
+销售一线,0,Lead Source,read,1
+销售一线,0,Customer,select,1
+销售一线,0,Customer,read,1
+销售一线,0,Customer,write,1
+销售一线,0,Customer,create,1
+销售一线,0,Sales Order,select,1
+销售一线,0,Sales Order,read,1
+销售一线,0,Sales Order,write,1
+销售一线,0,Sales Order,create,1
+销售一线,0,Warehouse,read,1
+销售一线,0,Item,read,1
+销售一线,0,Stock Settings,read,1
+销售一线,0,Territory,read,1
+销售一线,0,Customer Group,read,1

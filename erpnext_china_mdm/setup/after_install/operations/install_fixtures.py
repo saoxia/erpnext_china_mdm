@@ -21,36 +21,37 @@ def install(country='China'):
 @contextmanager
 def install_roles():
 	import csv
-	with open((Path(__file__).parent.parent / "data" / 'premission.csv'), mode='rt',encoding="utf8") as file:
+	premission_filepath = Path(__file__).parent.parent / "data" / 'premission.csv'
+	with open(premission_filepath, mode='rt',encoding="utf8") as file:
 		reader = csv.DictReader(file)
 
-	#添加role
-	roles = []
-	for line in reader:
-		roles.append({'role': line['role']})
-	for role_name in list(set(roles)):
-		frappe.get_doc({'doctype':'Role','role_name':role_name}).insert()
-	frappe.db.commit()
+		#添加role
+		roles = []
+		for line in reader:
+			roles.append({'role': line['role']})
+		for role_name in list(set(roles)):
+			frappe.get_doc({'doctype':'Role','role_name':role_name}).insert()
+		frappe.db.commit()
 
-	#添加premission
-	premissions = []
-	for line in reader:
-		premission = {'parent': line['doctype'],'role': line['role'],'permlevel':line['permlevel']}
-		if premission not in premissions:
-			premissions.append(premission)
-	for premission in premissions:
-		add(**premission)
-	frappe.db.commit()
+		#添加premission
+		premissions = []
+		for line in reader:
+			premission = {'parent': line['doctype'],'role': line['role'],'permlevel':line['permlevel']}
+			if premission not in premissions:
+				premissions.append(premission)
+		for premission in premissions:
+			add(**premission)
+		frappe.db.commit()
 
-	#更新premission
-	for line in reader:
-		premission = {'role': line['role'],
-			'permlevel': int(line['permlevel']),
-			'doctype': line['doctype'],
-			'ptype': line['ptype'],
-			'value': int(line['value'])}
-		update(**premission)
-	frappe.db.commit()
+		#更新premission
+		for line in reader:
+			premission = {'role': line['role'],
+				'permlevel': int(line['permlevel']),
+				'doctype': line['doctype'],
+				'ptype': line['ptype'],
+				'value': int(line['value'])}
+			update(**premission)
+		frappe.db.commit()
 
 	# 添加模块集合
 	frappe.get_doc({'doctype':'Module Profile','module_profile_name':'销售'}).insert()
@@ -58,6 +59,7 @@ def install_roles():
 	
 	# 设置模块集合的权限
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'CRM'})
+	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'销售'})
 	frappe.db.commit()
 
 
