@@ -14,7 +14,7 @@ from frappe.core.page.permission_manager.permission_manager import add, reset, u
 def install(country='China'):
 	install_roles() # 添加角色
 	install_user() # 添加测试账号
-	install_user()  # 添加测试账号
+	install_user_premission()  # 添加测试账号
 
 
 def install_roles():
