@@ -4,6 +4,7 @@
 from contextlib import contextmanager
 from pathlib import Path
 import os
+import csv
 
 import frappe
 from frappe import _
@@ -12,11 +13,11 @@ from frappe.core.page.permission_manager.permission_manager import add, reset, u
 
 def install(country='China'):
 	install_roles() # 添加角色
+	install_user() # 添加测试账号
 	install_user()  # 添加测试账号
 
 
 def install_roles():
-	import csv
 	premission_filepath = Path(__file__).parent.parent / "data" / 'premission.csv'
 	with open(premission_filepath, mode='rt',encoding="utf8") as file:
 		reader = csv.DictReader(file)
@@ -65,17 +66,23 @@ def install_roles():
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'Selling'})
 	frappe.db.commit()
 
+def install_user():
+	premission_filepath = Path(__file__).parent.parent / "data" / 'user.csv'
+	with open(premission_filepath, mode='rt',encoding="utf8") as file:
+		reader = csv.DictReader(file)
+
+		#添加role
+		roles = []
+		for line in reader:
+			frappe.get_doc({'doctype':'User',
+				   			'role_name':line['email'],
+							'username':line['username'],
+							'first_name':line['first_name']}).insert()
+			frappe.db.commit()
+
 
 @contextmanager
-def install_user(user_email=None,roles=None):
-
-	# 添加测试账号
-	user_info = {'doctype':'User',
-				'email':"sale_a1@foxmail.com",
-				'username': 'A团队销售一线1',
-				'first_name': 'A团队销售一线1'}
-	frappe.get_doc(user_info).insert()
-	frappe.db.commit()
+def install_user_premission(user_email=None,roles=None):
 	# 为测试账号添加角色
 	user = frappe.get_doc("User", "sale_a1@foxmail.com")
 	user.add_roles("销售一线")
