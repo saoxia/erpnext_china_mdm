@@ -3,17 +3,9 @@
 
 from contextlib import contextmanager
 from pathlib import Path
-import os
 
 import frappe
-from frappe import _
 from frappe.core.page.permission_manager.permission_manager import add, reset, update
-
-
-def install(country='China'):
-	install_roles() # 添加角色
-	install_user()  # 添加测试账号
-
 
 
 
@@ -52,15 +44,8 @@ def install_roles():
 		update(**premission)
 	frappe.db.commit()
 
-	# 添加模块集合
-	frappe.get_doc({'doctype':'Module Profile','module_profile_name':'销售'}).insert()
-	frappe.db.commit()
+	# 添加模块组
 	
-	# 设置模块集合的权限
-	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'CRM'})
-	frappe.db.commit()
-
-
 @contextmanager
 def install_user(user_email=None,roles=None):
 
@@ -77,13 +62,3 @@ def install_user(user_email=None,roles=None):
 	frappe.db.commit()
 	# 为测试账号添加模块组
 	user.db_set('module_profile','销售',commit=True)
-
-
-
-doc = frappe.get_doc({
-    'doctype': 'Module Profile',
-    'title': 'New Task'
-})
-
-
-frappe.get_doc({'doctype':'Module Profile','module_profile_name':'销售111'}).insert()

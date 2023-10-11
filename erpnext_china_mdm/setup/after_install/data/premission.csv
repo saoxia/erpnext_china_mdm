@@ -1,0 +1,7 @@
+role,permlevel,doctype,ptype,value
+销售一线,0,Lead Source,select,1
+销售一线,0,Lead Source,read,1
+销售一线,0,Lead,select,1
+销售一线,0,Lead,read,1
+销售一线,0,Lead,write,1
+销售一线,0,Lead,create,1
