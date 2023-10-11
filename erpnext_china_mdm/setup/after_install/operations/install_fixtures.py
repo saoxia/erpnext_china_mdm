@@ -67,15 +67,14 @@ def install_roles():
 	frappe.db.commit()
 
 def install_user():
-	premission_filepath = Path(__file__).parent.parent / "data" / 'user.csv'
-	with open(premission_filepath, mode='rt',encoding="utf8") as file:
+	user_filepath = Path(__file__).parent.parent / "data" / 'user.csv'
+	with open(user_filepath, mode='rt',encoding="utf8") as file:
 		reader = csv.DictReader(file)
 
 		#添加role
-		roles = []
 		for line in reader:
 			frappe.get_doc({'doctype':'User',
-				   			'role_name':line['email'],
+				   			'email':line['email'],
 							'username':line['username'],
 							'first_name':line['first_name']}).insert()
 			frappe.db.commit()
