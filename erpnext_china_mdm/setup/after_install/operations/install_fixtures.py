@@ -54,10 +54,12 @@ def install_roles():
 	frappe.db.commit()
 	
 	# 设置模块集合的权限
+	'''
 	modules = frappe.db.get_list('Module Def','name')
 	for module_name in modules:
 		frappe.get_doc({'doctype':'Block Module','parent':'销售','module':module_name['name']}).insert()
 		frappe.db.commit()
+	'''
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'CRM'})
 	frappe.db.commit()
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'Selling'})

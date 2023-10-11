@@ -13,6 +13,7 @@ role,permlevel,doctype,ptype,value
 销售一线,0,Sales Order,read,1
 销售一线,0,Sales Order,write,1
 销售一线,0,Sales Order,create,1
+销售一线,0,Sales Order,submit,1
 销售一线,0,Warehouse,read,1
 销售一线,0,Item,read,1
 销售一线,0,Stock Settings,read,1
