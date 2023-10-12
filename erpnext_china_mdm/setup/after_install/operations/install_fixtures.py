@@ -48,7 +48,7 @@ def install_roles():
 				'ptype': line['ptype'],
 				'value': int(line['value'])}
 			update(**premission)
-		frappe.db.commit()
+			frappe.db.commit()
 
 	# 添加模块集合
 	frappe.get_doc({'doctype':'Module Profile','module_profile_name':'销售'}).insert()
