@@ -30,16 +30,19 @@ def install_roles():
 				frappe.db.commit()
 				roles.append(line['role'])
 
+	with open(premission_filepath, mode='rt',encoding="utf8") as file:
+		reader = csv.DictReader(file)
 		#添加premission
 		premissions = []
 		for line in reader:
-			premission = {'parent': line['doctype'],'role': line['role'],'permlevel':it(line['permlevel'])}
+			premission = {'parent': line['doctype'],'role': line['role'],'permlevel':int(line['permlevel'])}
 			if premission not in premissions:
 				add(**premission)
 				frappe.db.commit()
 				premissions.append(premission)
 		
-
+	with open(premission_filepath, mode='rt',encoding="utf8") as file:
+		reader = csv.DictReader(file)
 		#更新premission
 		for line in reader:
 			premission = {'role': line['role'],
