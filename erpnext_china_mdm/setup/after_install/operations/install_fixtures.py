@@ -15,6 +15,7 @@ def install(country='China'):
 	install_roles() # 添加角色
 	install_user() # 添加测试账号
 	install_user_premission()  # 添加测试账号
+	install_server_script() # 添加客户端脚本
 
 
 def install_roles():
@@ -91,3 +92,18 @@ def install_user_premission(user_email=None,roles=None):
 	frappe.db.commit()
 	# 为测试账号添加模块组
 	user.db_set('module_profile','销售',commit=True)
+
+
+def install_server_script():
+	script = '''
+	user = frappe.user
+	conditions = f"owner ='{user}'" 
+	'''
+
+	frappe.get_doc({'doctype':'Server Script',
+					'module':'ERPNext China MDM',
+					'name':'线索查看权限',
+					'script_type': 'Permission Query',
+					'reference_doctype':'Lead',
+					'script':script}).insert()
+	frappe.db.commit()
