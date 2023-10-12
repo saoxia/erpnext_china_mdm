@@ -9,14 +9,16 @@ import csv
 import frappe
 from frappe import _
 from frappe.core.page.permission_manager.permission_manager import add, reset, update
+from erpnext_china_mdm.setup.after_install.server_script import premission_lead
 
 
 def install(country='China'):
 	install_roles() # 添加角色
-	install_user() # 添加测试账号
-	install_user_premission()  # 添加测试账号
 	install_server_script() # 添加客户端脚本
 
+	# 测试环境载入数据
+	install_user() # 添加测试账号
+	install_user_premission()  # 为测试账号添加权限
 
 def install_roles():
 	premission_filepath = Path(__file__).parent.parent / "data" / 'premission.csv'
@@ -70,6 +72,10 @@ def install_roles():
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'Selling'})
 	frappe.db.commit()
 
+def install_server_script():
+	frappe.get_doc(premission_lead.script).insert()
+	frappe.db.commit()
+
 def install_user():
 	user_filepath = Path(__file__).parent.parent / "data" / 'user.csv'
 	with open(user_filepath, mode='rt',encoding="utf8") as file:
@@ -92,18 +98,3 @@ def install_user_premission(user_email=None,roles=None):
 	frappe.db.commit()
 	# 为测试账号添加模块组
 	user.db_set('module_profile','销售',commit=True)
-
-
-def install_server_script():
-	script = '''
-	user = frappe.user
-	conditions = f"owner ='{user}'" 
-	'''
-
-	frappe.get_doc({'doctype':'Server Script',
-					'module':'ERPNext China MDM',
-					'name':'线索查看权限',
-					'script_type': 'Permission Query',
-					'reference_doctype':'Lead',
-					'script':script}).insert()
-	frappe.db.commit()
