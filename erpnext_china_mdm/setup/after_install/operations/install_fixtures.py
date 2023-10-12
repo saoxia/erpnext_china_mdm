@@ -35,10 +35,10 @@ def install_roles():
 		for line in reader:
 			premission = {'parent': line['doctype'],'role': line['role'],'permlevel':line['permlevel']}
 			if premission not in premissions:
+				add(**premission)
+				frappe.db.commit()
 				premissions.append(premission)
-		for premission in premissions:
-			add(**premission)
-		frappe.db.commit()
+		
 
 		#更新premission
 		for line in reader:
