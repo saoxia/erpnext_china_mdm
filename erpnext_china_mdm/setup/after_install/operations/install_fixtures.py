@@ -19,6 +19,15 @@ def install(country='China'):
 	# 测试环境载入数据
 	install_user() # 添加测试账号
 	install_user_premission()  # 为测试账号添加权限
+	set_system_setting()
+
+def install_server_script():
+	frappe.get_doc(premission_lead.script).insert()
+	frappe.db.commit()
+
+def set_system_setting():
+	frappe.db.set_single_value('System Settings', 'login_with_email_link', 0)
+	frappe.db.commit()
 
 def install_roles():
 	premission_filepath = Path(__file__).parent.parent / "data" / 'premission.csv'
@@ -72,9 +81,7 @@ def install_roles():
 	frappe.db.delete('Block Module',filters = {'parent':'销售','module':'Selling'})
 	frappe.db.commit()
 
-def install_server_script():
-	frappe.get_doc(premission_lead.script).insert()
-	frappe.db.commit()
+
 
 def install_user():
 	user_filepath = Path(__file__).parent.parent / "data" / 'user.csv'
