@@ -25,7 +25,7 @@ def install(country='China'):
 	install_roles() # 添加角色
 	install_server_script() # 添加客户端脚本
 	install_lead_source() # 添加线索来源
-	install_industry_type() # 添加行业
+	# install_industry_type() # 添加行业
 	add_uom_data() # 添加UOM
 	# 测试环境载入数据
 	install_user() # 添加测试账号
@@ -60,7 +60,7 @@ def install_industry_type():
 	for doctype, title_field, filename in (
 		("Industry Type", "source_name", "industry_type.txt"),
 		):
-		records += [{"doctype": doctype, title_field: title} for title in read_lines(filename)]
+		records += [{"doctype": doctype, W: title} for title in read_lines(filename)]
 	make_records(records)
 
 def add_uom_data():
