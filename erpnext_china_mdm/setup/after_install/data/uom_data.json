@@ -20,6 +20,22 @@
 		"must_be_whole_number": 1
 	},
 	{
+		"uom_name": "袋",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "袋(小)",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "袋(中)",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "袋(大)",
+		"must_be_whole_number": 1
+	},
+	{
 		"uom_name": "片",
 		"must_be_whole_number": 1
 	},
@@ -36,11 +52,31 @@
 		"must_be_whole_number": 1
 	},
 	{
+		"uom_name": "盒(小)",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "盒(中)",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "盒(大)",
+		"must_be_whole_number": 1
+	},
+	{
 		"uom_name": "箱",
 		"must_be_whole_number": 1
 	},
 	{
-		"uom_name": "个",
+		"uom_name": "箱(小)",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "箱(中)",
+		"must_be_whole_number": 1
+	},
+	{
+		"uom_name": "箱(大)",
 		"must_be_whole_number": 1
 	},
 	{
