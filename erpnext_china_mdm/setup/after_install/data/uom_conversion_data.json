@@ -1,8 +1,8 @@
 [
 	{
 		"category": "Length",
-		"from_uom": "Meter",
-		"to_uom": "Meter",
+		"from_uom": "米",
+		"to_uom": "密",
 		"abbr": "m",
 		"value": "1"
 	}
