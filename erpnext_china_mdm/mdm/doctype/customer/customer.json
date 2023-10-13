@@ -486,7 +486,6 @@
   {
    "fieldname": "opportunity_name",
    "fieldtype": "Link",
-   "hidden":1,
    "label": "From Opportunity",
    "no_copy": 1,
    "options": "Opportunity",
