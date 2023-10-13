@@ -5,17 +5,28 @@ from contextlib import contextmanager
 from pathlib import Path
 import os
 import csv
+import json
 
 import frappe
 from frappe import _
 from frappe.core.page.permission_manager.permission_manager import add, reset, update
 from erpnext_china_mdm.setup.after_install.server_script import premission_lead
+from frappe.desk.page.setup_wizard.setup_wizard import make_records
+
+def read_lines(filename: str) -> list[str]:
+	"""Return a list of lines from a file in the data directory."""
+	return (Path(__file__).parent.parent / "data" / filename).read_text().splitlines()
+
+
+
 
 
 def install(country='China'):
 	install_roles() # 添加角色
 	install_server_script() # 添加客户端脚本
-
+	install_lead_source() # 添加线索来源
+	install_industry_type() # 添加行业
+	add_uom_data() #添加UOM
 	# 测试环境载入数据
 	install_user() # 添加测试账号
 	install_user_premission()  # 为测试账号添加权限
@@ -28,6 +39,75 @@ def install_server_script():
 def set_system_setting():
 	frappe.db.set_single_value('System Settings', 'login_with_email_link', 0)
 	frappe.db.commit()
+
+def install_lead_source():
+	# Lead Source 和 Industry Type
+	frappe.db.delete('Lead Source')
+	frappe.db.commit()
+
+	records = []
+	for doctype, title_field, filename in (
+		("Lead Source", "source_name", "lead_source.txt"),
+		):
+		records += [{"doctype": doctype, title_field: title} for title in read_lines(filename)]
+	make_records(records)
+
+def install_industry_type():
+	frappe.db.delete('Industry Type')
+	frappe.db.commit()
+
+	records = []
+	for doctype, title_field, filename in (
+		("Industry Type", "source_name", "industry_type.txt"),
+		):
+		records += [{"doctype": doctype, title_field: title} for title in read_lines(filename)]
+	make_records(records)
+
+def add_uom_data():
+	frappe.db.delete('UOM')
+	frappe.db.commit()
+	frappe.db.delete('UOM Conversion Factor')
+	frappe.db.commit()
+
+	# add UOMs
+	uoms = json.loads(
+		open(frappe.get_app_path("erpnext_china_mdm", "setup", "setup_wizard", "data", "uom_data.json")).read()
+	)
+	for d in uoms:
+		if not frappe.db.exists("UOM", _(d.get("uom_name"))):
+			frappe.get_doc(
+				{
+					"doctype": "UOM",
+					"uom_name": _(d.get("uom_name")),
+					"name": _(d.get("uom_name")),
+					"must_be_whole_number": d.get("must_be_whole_number"),
+					"enabled": 1,
+				}
+			).db_insert()
+
+	# bootstrap uom conversion factors
+	uom_conversions = json.loads(
+		open(
+			frappe.get_app_path("erpnext", "setup", "setup_wizard", "data", "uom_conversion_data.json")
+		).read()
+	)
+	for d in uom_conversions:
+		if not frappe.db.exists("UOM Category", _(d.get("category"))):
+			frappe.get_doc({"doctype": "UOM Category", "category_name": _(d.get("category"))}).db_insert()
+
+		if not frappe.db.exists(
+			"UOM Conversion Factor",
+			{"from_uom": _(d.get("from_uom")), "to_uom": _(d.get("to_uom"))},
+		):
+			frappe.get_doc(
+				{
+					"doctype": "UOM Conversion Factor",
+					"category": _(d.get("category")),
+					"from_uom": _(d.get("from_uom")),
+					"to_uom": _(d.get("to_uom")),
+					"value": d.get("value"),
+				}
+			).db_insert()
 
 def install_roles():
 	premission_filepath = Path(__file__).parent.parent / "data" / 'premission.csv'
