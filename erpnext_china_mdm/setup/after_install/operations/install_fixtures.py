@@ -71,7 +71,7 @@ def add_uom_data():
 
 	# add UOMs
 	uoms = json.loads(
-		open(frappe.get_app_path("erpnext_china_mdm", "setup", "setup_wizard", "data", "uom_data.json")).read()
+		open(frappe.get_app_path("erpnext_china_mdm", "setup", "after_install", "data", "uom_data.json")).read()
 	)
 	for d in uoms:
 		if not frappe.db.exists("UOM", _(d.get("uom_name"))):
@@ -88,7 +88,7 @@ def add_uom_data():
 	# bootstrap uom conversion factors
 	uom_conversions = json.loads(
 		open(
-			frappe.get_app_path("erpnext", "setup", "setup_wizard", "data", "uom_conversion_data.json")
+			frappe.get_app_path("erpnext", "setup", "after_install", "data", "uom_conversion_data.json")
 		).read()
 	)
 	for d in uom_conversions:
