@@ -155,7 +155,6 @@
    "options": "Lead",
    "print_hide": 1,
    "report_hide": 1,
-   "reqd": 1
   },
   {
    "fieldname": "image",
