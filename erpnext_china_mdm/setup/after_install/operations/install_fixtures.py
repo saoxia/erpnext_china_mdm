@@ -23,7 +23,7 @@ def read_lines(filename: str) -> list[str]:
 
 def install(country='China'):
 	install_roles() # 添加角色
-	install_server_script() # 添加客户端脚本
+	# install_server_script() # 添加客户端脚本
 	install_lead_source() # 添加线索来源
 	# install_industry_type() # 添加行业
 	add_uom_data() # 添加UOM
