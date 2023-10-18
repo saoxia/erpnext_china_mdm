@@ -221,4 +221,5 @@ after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtur
 
 doctype_js = {
     "Customer": "mdm/doctype/customer/customer.js",
+    "Sales Order": "mdm/doctype/sales_order/sales_order.js",
 }
