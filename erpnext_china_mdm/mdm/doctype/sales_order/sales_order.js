@@ -516,28 +516,24 @@ erpnext.selling.SalesOrderController = class SalesOrderController extends erpnex
 					// delivery note
 					if(flt(doc.per_delivered, 2) < 100 && (order_is_a_sale || order_is_a_custom_sale) && allow_delivery) {
 						this.frm.add_custom_button(__('Delivery Note'), () => this.make_delivery_note_based_on_delivery_date(true), __('Create'));
-						this.frm.add_custom_button(__('Work Order'), () => this.make_work_order(), __('Create'));
+						// 删除工单按钮
+						//this.frm.add_custom_button(__('Work Order'), () => this.make_work_order(), __('Create'));
 					}
 
 					// sales invoice
 					if(flt(doc.per_billed, 2) < 100) {
 						this.frm.add_custom_button(__('Sales Invoice'), () => me.make_sales_invoice(), __('Create'));
 					}
-
+					
 					// material request
-					if(!doc.order_type || (order_is_a_sale || order_is_a_custom_sale) && flt(doc.per_delivered, 2) < 100) {
-						this.frm.add_custom_button(__('Material Request'), () => this.make_material_request(), __('Create'));
-						// 删除材料申请按钮
-						this.frm.remove_custom_button(__('Material Request'), __('Create'));	
-
-						this.frm.add_custom_button(__('Request for Raw Materials'), () => this.make_raw_material_request(), __('Create'));
-					}
+					//if(!doc.order_type || (order_is_a_sale || order_is_a_custom_sale) && flt(doc.per_delivered, 2) < 100) {
+					//	this.frm.add_custom_button(__('Material Request'), () => this.make_material_request(), __('Create'));
+					//	this.frm.add_custom_button(__('Request for Raw Materials'), () => this.make_raw_material_request(), __('Create'));
+					//}
 
 					// Make Purchase Order
 					//if (!this.frm.doc.is_internal_customer) {
 					//	this.frm.add_custom_button(__('Purchase Order'), () => this.make_purchase_order(), __('Create'));
-					//	// 删除采购订单按钮
-					//	this.frm.remove_custom_button(__('Purchase Order'), __('Create'));	
 					//}
 
 					// maintenance
@@ -565,13 +561,10 @@ erpnext.selling.SalesOrderController = class SalesOrderController extends erpnex
 					}
 				}
 				// payment request
-				if(flt(doc.per_billed, precision('per_billed', doc)) < 100 + frappe.boot.sysdefaults.over_billing_allowance) {
-					this.frm.add_custom_button(__('Payment Request'), () => this.make_payment_request(), __('Create'));
-					// 删除付款申请按钮
-					this.frm.remove_custom_button(__('Payment Request'), __('Create'));
-
-					this.frm.add_custom_button(__('Payment'), () => this.make_payment_entry(), __('Create'));
-				}
+				//if(flt(doc.per_billed, precision('per_billed', doc)) < 100 + frappe.boot.sysdefaults.over_billing_allowance) {
+				//	this.frm.add_custom_button(__('Payment Request'), () => this.make_payment_request(), __('Create'));
+				//	this.frm.add_custom_button(__('Payment'), () => this.make_payment_entry(), __('Create'));
+				//}
 				this.frm.page.set_inner_btn_group_as_primary(__('Create'));
 			}
 		}
