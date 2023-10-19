@@ -223,3 +223,7 @@ doctype_js = {
     "Customer": "mdm/doctype/customer/customer.js",
     "Sales Order": "mdm/doctype/sales_order/sales_order.js",
 }
+
+permission_query_conditions = {
+    "Sales Order": "erpnext_china_mdm.mdm.doctype.sales_order.sales_order.sales_order_has_query_permission",
+}
