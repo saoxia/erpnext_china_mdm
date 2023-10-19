@@ -9,7 +9,7 @@
  "is_standard": "Yes",
  "modified": "2020-05-29 14:54:53.591445",
  "modified_by": "Administrator",
- "module": "Selling",
+ "module": "mdm",
  "name": "Sales Order Item Shortage Report",
  "owner": "Administrator",
  "prepared_report": 0,
