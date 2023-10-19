@@ -18,3 +18,13 @@ role,permlevel,doctype,ptype,value
 销售一线,0,Stock Settings,Read,1
 销售一线,0,Territory,Read,1
 销售一线,0,Customer Group,Read,1
+销售一线,0,Opportunity,Select,1
+销售一线,0,Opportunity,Read,1
+销售一线,0,Opportunity,Write,1
+销售一线,0,Opportunity,Create,1
+销售一线,0,Quotation,Select,1
+销售一线,0,Quotation,Read,1
+销售一线,0,Quotation,Write,1
+销售一线,0,Quotation,Create,1
+销售一线,0,Quotation,Cancel,1
+销售一线,0,Quotation,Amend,1
