@@ -225,5 +225,6 @@ doctype_js = {
 }
 
 permission_query_conditions = {
-    "Sales Order": "erpnext_china_mdm.mdm.doctype.sales_order.sales_order.sales_order_has_query_permission",
+    "Sales Order": "erpnext_china_mdm.mdm.doctype.sales_order.premission_sales_order.sales_order_has_query_permission",
+    'Customer': "erpnext_china_mdm.mdm.doctype.customer.premission_customer.customer_has_query_permission",
 }
