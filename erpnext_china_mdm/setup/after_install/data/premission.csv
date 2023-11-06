@@ -1,30 +1,52 @@
 role,permlevel,doctype,ptype,value
-销售一线,0,Lead,Read,1
-销售一线,0,Lead,Write,1
-销售一线,0,Lead,Create,1
-销售一线,0,Lead Source,Select,1
-销售一线,0,Lead Source,Read,1
-销售一线,0,Customer,Select,1
-销售一线,0,Customer,Read,1
-销售一线,0,Customer,Write,1
-销售一线,0,Customer,Create,1
-销售一线,0,Sales Order,Select,1
-销售一线,0,Sales Order,Read,1
-销售一线,0,Sales Order,Write,1
-销售一线,0,Sales Order,Create,1
-销售一线,0,Sales Order,Submit,1
-销售一线,0,Warehouse,Read,1
-销售一线,0,Item,Read,1
-销售一线,0,Stock Settings,Read,1
-销售一线,0,Territory,Read,1
-销售一线,0,Customer Group,Read,1
-销售一线,0,Opportunity,Select,1
-销售一线,0,Opportunity,Read,1
-销售一线,0,Opportunity,Write,1
-销售一线,0,Opportunity,Create,1
-销售一线,0,Quotation,Select,1
-销售一线,0,Quotation,Read,1
-销售一线,0,Quotation,Write,1
-销售一线,0,Quotation,Create,1
-销售一线,0,Quotation,Cancel,1
-销售一线,0,Quotation,Amend,1
+销售,0,Lead,Read,1
+销售,0,Lead,Write,1
+销售,0,Lead,Create,1
+销售,0,Lead Source,Select,1
+销售,0,Lead Source,Read,1
+销售,0,Customer,Select,1
+销售,0,Customer,Read,1
+销售,0,Customer,Write,1
+销售,0,Customer,Create,1
+销售,0,Sales Order,Select,1
+销售,0,Sales Order,Read,1
+销售,0,Sales Order,Write,1
+销售,0,Sales Order,Create,1
+销售,0,Sales Order,Submit,1
+销售,0,Warehouse,Read,1
+销售,0,Item,Read,1
+销售,0,Stock Settings,Read,1
+销售,0,Territory,Read,1
+销售,0,Customer Group,Read,1
+销售,0,Opportunity,Select,1
+销售,0,Opportunity,Read,1
+销售,0,Opportunity,Write,1
+销售,0,Opportunity,Create,1
+销售,0,Quotation,Select,1
+销售,0,Quotation,Read,1
+销售,0,Quotation,Write,1
+销售,0,Quotation,Create,1
+销售,0,Quotation,Cancel,1
+销售,0,Quotation,Amend,1
+销售,0,Item Price,Read,1
+销售,0,Contact,Read,1
+销售,0,Contact,Write,1
+销售,0,Contact,Create,1
+销售,0,Accounts Settings,Read,1
+销售,0,Product Bundle,Read,1
+销售会计,0,Payment Entry,Select,1
+销售会计,0,Payment Entry,Read,1
+销售会计,0,Payment Entry,Write,1
+销售会计,0,Payment Entry,Create,1
+销售会计,0,Payment Entry,Delete,1
+销售会计,0,Payment Entry,Submit,1
+销售会计,0,Payment Entry,Cancel,1
+销售会计,0,Payment Entry,Amend,1
+销售会计,0,Payment Entry,Export,1
+销售会计,0,Accounts Settings,Read,1
+销售会计,0,Account,Read,1
+销售会计,0,Bank Account,Read,1
+销售会计,0,Mode of Payment,Read,1
+销售会计,0,Company,Read,1
+
+
