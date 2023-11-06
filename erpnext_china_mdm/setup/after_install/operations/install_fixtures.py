@@ -181,7 +181,7 @@ def install_user():
 def install_user_premission(user_email=None,roles=None):
 	# 为测试账号添加角色
 	user = frappe.get_doc("User", "sale_a1@foxmail.com")
-	user.add_roles("销售一线")
+	user.add_roles("销售")
 	frappe.db.commit()
 	# 为测试账号添加模块组
 	user.db_set('module_profile','销售',commit=True)
