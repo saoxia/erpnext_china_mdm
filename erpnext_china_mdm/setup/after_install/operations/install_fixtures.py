@@ -180,7 +180,7 @@ def install_user():
 @contextmanager
 def install_user_premission(user_email=None,roles=None):
 	# 为测试账号添加角色
-	user = frappe.get_doc("User", "sale_a1@foxmail.com")
+	user = frappe.get_doc("User", "suyanxia@zhushigroup.cn")
 	user.add_roles("销售")
 	frappe.db.commit()
 	# 为测试账号添加模块组
