@@ -10,7 +10,6 @@ COPY patches/workspace/selling/selling.json ${WORK_DIR}/apps/erpnext/erpnext/sel
 COPY patches/data/industry_type.txt /home/frappe/frappe-bench/apps/erpnext/erpnext/setup/setup_wizard/data/industry_type.txt
 COPY patches/data/lead_source.txt /home/frappe/frappe-bench/apps/erpnext/erpnext/setup/setup_wizard/data/lead_source.txt
 
-RUN chmod -R 777 .
 
 COPY frappe-bench.conf /etc/nginx/conf.d/frappe-bench.conf
 
