@@ -220,12 +220,12 @@ required_apps = ['saoxia/erpnext_china']
 after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtures.install"
 
 doctype_js = {
-    "Customer": "mdm/doctype/customer/customer.js",
-    "Sales Order": "mdm/doctype/sales_order/sales_order.js",
-    "Delivery Note": "mdm/doctype/delivery_note/delivery_note.js",
+    "Customer": "mdm/custom_form_script/customer/customer.js",
+    "Sales Order": "mdm/custom_form_script/sales_order/sales_order.js",
+    "Delivery Note": "mdm/custom_form_script/delivery_note/delivery_note.js",
 }
 
 permission_query_conditions = {
-    "Sales Order": "erpnext_china_mdm.mdm.doctype.sales_order.permission_sales_order.sales_order_has_query_permission",
-    'Customer': "erpnext_china_mdm.mdm.doctype.customer.permission_customer.customer_has_query_permission",
+    "Sales Order": "erpnext_china_mdm.mdm.custom_form_script.sales_order.permission_sales_order.sales_order_has_query_permission",
+    'Customer': "erpnext_china_mdm.mdm.custom_form_script.customer.permission_customer.customer_has_query_permission",
 }
