@@ -2,6 +2,8 @@ FROM digitwise/erpnext_china
 ENV WORK_DIR=/home/frappe/frappe-bench
 RUN bench get-app --branch develop https://github.com/saoxia/erpnext_china_mdm
 
+COPY patches/frappe/login.html /home/frappe/frappe-bench/apps/frappe/frappe/www/login.html
+
 COPY patches/workspace/buying/buying.json ${WORK_DIR}/apps/erpnext/erpnext/buying/workspace/buying/buying.json
 COPY patches/workspace/crm/crm.json ${WORK_DIR}/apps/erpnext/erpnext/crm/workspace/crm/crm.json
 COPY patches/workspace/manufacturing/manufacturing.json ${WORK_DIR}/apps/erpnext/erpnext/manufacturing/workspace/manufacturing/manufacturing.json
