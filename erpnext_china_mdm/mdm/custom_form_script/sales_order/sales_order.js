@@ -19,6 +19,6 @@ frappe.ui.form.on('Sales Order', {
 				filters: {'value':row.item_code, apply_on:"Item Code"},
 				
 			}
-		}
+		};
 
 	})
