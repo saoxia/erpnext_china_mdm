@@ -14,6 +14,5 @@ COPY patches/data/lead_source.txt /home/frappe/frappe-bench/apps/erpnext/erpnext
 
 
 COPY frappe-bench.conf /etc/nginx/conf.d/frappe-bench.conf
-COPY test_init.sh /home/frappe/frappe-bench/test_init.sh
 
 CMD ["/bin/bash"]
