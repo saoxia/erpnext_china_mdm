@@ -7,7 +7,7 @@ def sales_order_has_query_permission(user):
 	users.append(user)
 	users_str = str(tuple(users)).replace(',)',')')
 
-	if frappe.db.get_value('Has Role',{'parent':user,'role':['in',['System Manager','销售会计']]}):
+	if frappe.db.get_value('Has Role',{'parent':user,'role':['in',['System Manager','销售会计','销售支持']]}):
 		# 如果角色包含管理员，则看到全量
 		conditions = ''
 	else:
