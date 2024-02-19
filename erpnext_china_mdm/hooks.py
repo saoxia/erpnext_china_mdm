@@ -222,6 +222,5 @@ after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtur
 # doctype_js = {}
 
 permission_query_conditions = {
-    "Sales Order": "erpnext_china_mdm.mdm.custom_form_script.sales_order.permission_sales_order.sales_order_has_query_permission",
     'Customer': "erpnext_china_mdm.mdm.custom_form_script.customer.permission_customer.customer_has_query_permission",
 }
