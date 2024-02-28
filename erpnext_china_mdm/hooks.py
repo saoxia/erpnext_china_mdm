@@ -227,3 +227,4 @@ permission_query_conditions = {
 
 has_permission = {
     "Customer": "erpnext_china_mdm.mdm.custom_form_script.customer.permission_customer.has_permission",
+}
