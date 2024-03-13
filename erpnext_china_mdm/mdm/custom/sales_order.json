@@ -365,9 +365,9 @@
     "modified": "2023-11-08 17:22:39.340986",
     "modified_by": "Administrator",
     "module": null,
-    "name": "Sales Order-transaction_date-reqd",
+    "name": "Sales Order-transaction_date-read_only",
     "owner": "Administrator",
-    "property": "reqd",
+    "property": "read_only",
     "property_type": "Check",
     "row_name": null,
     "value": "1"
