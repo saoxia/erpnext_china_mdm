@@ -215,16 +215,30 @@ required_apps = ['saoxia/erpnext_china']
 #	"erpnext_china.auth.validate"
 # ]
 
-
+override_doctype_class = {
+    'Social Login Key':'erpnext_china_mdm.erpnext_china_mdm.custom_form_script.social_login_key.social_login_key.SocialLoginKey',
+}
 
 after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtures.install"
 
 # doctype_js = {}
 
 permission_query_conditions = {
-    'Customer': "erpnext_china_mdm.mdm.custom_form_script.customer.permission_customer.has_query_permission",
+    'Customer': "erpnext_china_mdm.mdm.custom_permission.customer.permission_customer.has_query_permission",
+    "Lead": "erpnext_china_mdm.mdm.custom_permission.lead.permission_lead.has_query_permission",
+    "Quotation": "erpnext_china_mdm.mdm.custom_permission.quotation.permission_quotation.has_query_permission",
+    "Opportunity": "erpnext_china_mdm.mdm.custom_permission.opportunity.permission_opportunity.has_query_permission",
+    "Sales Order": "erpnext_china_mdm.mdm.custom_permission.sales_order.permission_sales_order.has_query_permission", 
+    "Item": "erpnext_china_mdm.mdm.custom_permission.item.permission_item.has_query_permission",
+    "Item Group": "erpnext_china_mdm.mdm.custom_permission.item_group.permission_item_group.has_query_permission",
 }
 
 has_permission = {
-    "Customer": "erpnext_china_mdm.mdm.custom_form_script.customer.permission_customer.has_permission",
+    "Customer": "erpnext_china_mdm.mdm.custom_permission.customer.permission_customer.has_permission",
+    "Lead": "erpnext_china_mdm.mdm.custom_permission.lead.permission_lead.has_permission",
+    "Quotation": "erpnext_china_mdm.mdm.custom_permission.quotation.permission_quotation.has_permission",
+    "Opportunity": "erpnext_china_mdm.mdm.custom_permission.opportunity.permission_opportunity.has_permission",
+	"Sales Order": "erpnext_china_mdm.mdm.custom_permission.sales_order.permission_sales_order.has_permission", 
+    "Item": "erpnext_china_mdm.mdm.custom_permission.item.permission_item.has_permission",
+    "Item Group": "erpnext_china_mdm.mdm.custom_permission.item_group.permission_item_group.has_permission",
 }
