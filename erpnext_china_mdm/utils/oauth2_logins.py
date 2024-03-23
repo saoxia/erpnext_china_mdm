@@ -22,7 +22,7 @@ def login_via_wecom(code: str, state: str):
 		#info.update({'email':user_info['biz_mail']})
 		uid = info['userid']
 		if 'zhushigroup.cn' not in uid:
-			uid = uid+'@zhushigroup.cn'
+			uid = lower(uid)+'@zhushigroup.cn'
 		info.update({'email':uid})
 		return info
 	
