@@ -37,8 +37,7 @@ def has_query_permission(user):
 
 		sql_default_warehouse_user_stock = f'''select parent from `tabWarehouse User`
 											where warehouse_user in {users_str}'''
-		conditions = f'''select count(*) from `tabItem`
-			where
+		conditions = f'''
 			name in (
 						select parent as item_name from `tabItem Default` 
 						where default_warehouse in (
