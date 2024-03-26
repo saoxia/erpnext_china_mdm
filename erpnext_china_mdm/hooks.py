@@ -216,7 +216,7 @@ required_apps = ['saoxia/erpnext_china']
 # ]
 
 override_doctype_class = {
-    'Social Login Key':'erpnext_china_mdm.erpnext_china_mdm.custom_form_script.social_login_key.social_login_key.SocialLoginKey',
+    'Social Login Key':'erpnext_china_mdm.mdm.custom_form_script.social_login_key.social_login_key.SocialLoginKey',
 }
 
 after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtures.install"
