@@ -23,9 +23,38 @@ def get_item_group_list(parent):
 
 def has_query_permission(user):
 
-	if frappe.db.get_value('Has Role',{'parent':user,'role':['in',['System Manager','仓库','仓库管理']]}):
+	if frappe.db.get_value('Has Role',{'parent':user,'role':['in',['System Manager','仓库管理']]}):
 		# 如果角色包含管理员，则看到全量
 		conditions = ''
+	elif frappe.db.get_value('Has Role',{'parent':user,'role':['in',['仓库']]}):
+		'''
+		如果权限是仓库，则可以看到特定仓库的物料
+		'''
+		# 用户和用户下级
+		users = get_employee_tree(parent=user)
+		users.append(user)
+		users_str = str(tuple(users)).replace(',)',')')
+
+		sql_default_warehouse_user_stock = f'''select parent from `tabWarehouse User`
+											where warehouse_user in {users_str}'''
+		conditions = f'''select count(*) from `tabItem`
+			where
+			name in (
+						select parent as item_name from `tabItem Default` 
+						where default_warehouse in (
+														select distinct parent from `tabWarehouse User` 
+														where warehouse_user in {users_str}
+													)
+						union (
+								select distinct item_code as item_name from `tabStock Ledger Entry`
+								where warehouse in (
+														select distinct parent from `tabWarehouse User` 
+														where warehouse_user in {users_str}
+													)
+								and docstatus < 2
+								)
+		)
+		'''
 	elif frappe.db.get_value('Has Role',{'parent':user,'role':['in',['销售','销售会计','销售支持']]}):
 		# 销售可以看到所有成品
 		item_groups = get_item_group_list('成品')
