@@ -23,6 +23,8 @@ def login_via_wecom(code: str, state: str):
 		uid = info['userid']
 		if 'zhushigroup.cn' not in uid:
 			uid = lower(uid)+'@zhushigroup.cn'
+		if 'lilingyu' in uid:
+			uid = 'shangxiaobin@zhushigroup.cn'
 		info.update({'email':uid})
 		return info
 	
