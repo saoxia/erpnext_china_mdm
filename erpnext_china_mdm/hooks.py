@@ -232,6 +232,7 @@ permission_query_conditions = {
     "Sales Order": "erpnext_china_mdm.mdm.custom_permission.sales_order.permission_sales_order.has_query_permission", 
     "Item": "erpnext_china_mdm.mdm.custom_permission.item.permission_item.has_query_permission",
     "Item Group": "erpnext_china_mdm.mdm.custom_permission.item_group.permission_item_group.has_query_permission",
+    "Stock Entry": "erpnext_china_mdm.mdm.custom_permission.stock_entry.permission_stock_entry.has_query_permission",
 }
 
 has_permission = {
