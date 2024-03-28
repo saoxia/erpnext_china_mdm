@@ -24,7 +24,7 @@ def has_query_permission(user):
 					s_warehouse in 
 						(
 							select distinct parent from `tabWarehouse User`
-							where warehouse_user in ('yueyanling@zhushigroup.cn')
+							where warehouse_user in {users_str}
 						)
 					)
 					or 
@@ -34,6 +34,10 @@ def has_query_permission(user):
 							select distinct parent from `tabWarehouse User`
 							where warehouse_user in {users_str}
 						)
+					)
+					or
+					(
+					owner in  {users_str}
 					)
 			)
 		'''
