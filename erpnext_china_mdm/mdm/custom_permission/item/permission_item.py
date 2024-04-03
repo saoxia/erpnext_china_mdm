@@ -51,7 +51,11 @@ def has_query_permission(user):
 														where warehouse_user in {users_str}
 													)
 								and docstatus < 2
-								)
+						)
+						union (
+								select name as item_name from `tabItem`
+								where owner in {users_str}
+						)
 		)
 		'''
 	elif frappe.db.get_value('Has Role',{'parent':user,'role':['in',['销售','销售会计','销售支持']]}):
