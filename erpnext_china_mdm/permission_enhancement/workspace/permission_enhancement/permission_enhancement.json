@@ -1,0 +1,78 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"wQgy90KVj3\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u5feb\u901f\u8bbf\u95ee</span>\",\"col\":12}},{\"id\":\"KFlfAGcZ_S\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Restrict Field Set\",\"col\":4}},{\"id\":\"VtQ2nWGdQp\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Restrict Field Assign\",\"col\":4}},{\"id\":\"4TZhuBvOcQ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Report Apply User Permission\",\"col\":4}},{\"id\":\"3QxaEA70Fn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Button Check\",\"col\":4}},{\"id\":\"1LKHPmp3_u\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"\u654f\u611f\u5355\u636e\u7c7b\u578b\",\"col\":3}},{\"id\":\"5o2Ls5PgTY\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"7SFbSR-Gia\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">\u62a5\u8868\u4e0e\u57fa\u7840\u8d44\u6599</span>\",\"col\":12}},{\"id\":\"3LG98BLZcV\",\"type\":\"card\",\"data\":{\"card_name\":\"Links\",\"col\":4}}]",
+ "creation": "2024-01-09 17:19:26.674330",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "Permission Enhancement",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Links",
+   "link_count": 0,
+   "link_to": "",
+   "link_type": "",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Restrict Field Set",
+   "link_count": 0,
+   "link_to": "Restrict Field Set",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2024-02-04 16:03:11.880165",
+ "modified_by": "Administrator",
+ "module": "Permission Enhancement",
+ "name": "Permission Enhancement",
+ "number_cards": [],
+ "owner": "yuxinyong@163.com",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 12.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "\u654f\u611f\u5355\u636e\u7c7b\u578b",
+   "link_to": "Sensitive DocType",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Restrict Field Set",
+   "link_to": "Restrict Field Set",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Restrict Field Assign",
+   "link_to": "Restrict Field Assign",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Report Apply User Permission",
+   "link_to": "Report Apply User Permission",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "",
+   "label": "Button Check",
+   "link_to": "Button Check",
+   "type": "DocType"
+  }
+ ],
+ "title": "Permission Enhancement"
+}

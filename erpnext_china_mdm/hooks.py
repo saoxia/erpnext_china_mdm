@@ -219,6 +219,7 @@ override_doctype_class = {
 }
 override_whitelisted_methods = {
     "erpnext_china.utils.oauth2_logins.login_via_wecom": "erpnext_china_mdm.utils.oauth2_logins.login_via_wecom",
+    "frappe.desk.query_report.get_data_for_custom_field":"erpnext_china_mdm.override.get_data_for_custom_field_wrapper",
 }
 after_install = "erpnext_china_mdm.setup.after_install.operations.install_fixtures.install"
 
