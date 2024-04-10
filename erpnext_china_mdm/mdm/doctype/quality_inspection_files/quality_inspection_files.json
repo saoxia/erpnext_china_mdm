@@ -1,0 +1,44 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-04-10 17:14:12.791870",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "file_describe",
+  "file",
+  "image"
+ ],
+ "fields": [
+  {
+   "fieldname": "file_describe",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "File Describe",
+   "reqd": 1
+  },
+  {
+   "fieldname": "file",
+   "fieldtype": "Attach",
+   "label": "FIle"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-04-10 17:17:28.283489",
+ "modified_by": "Administrator",
+ "module": "mdm",
+ "name": "Quality Inspection Files",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
