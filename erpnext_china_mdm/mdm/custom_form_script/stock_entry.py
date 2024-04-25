@@ -1,4 +1,4 @@
-from erpnext.stock.doctype.stock_entry import StockEntry
+from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 
 class CustomStockEntry(StockEntry):
 	@property
