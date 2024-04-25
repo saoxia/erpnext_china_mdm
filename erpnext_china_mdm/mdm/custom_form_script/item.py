@@ -27,7 +27,7 @@ class CustomItem(Item):
             last_conversion_factor = conversion_factor
         self.custom_uoms_string = s[1:]
 
-    def after_save(self):
+    def before_save(self):
         self.set_custom_uoms_string()
 
 
