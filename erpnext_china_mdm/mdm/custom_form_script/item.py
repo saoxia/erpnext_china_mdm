@@ -15,7 +15,7 @@ class CustomItem(Item):
         for conversion_factor,uom in uom_dict.items():
             if (conversion_factor - int(conversion_factor)) == 0 :
                 conversion_factor = int(conversion_factor)
-            if self.stock_uom != uom and conversion_factor < 1
+            if self.stock_uom != uom and conversion_factor < 1:
                 if last_uom:
                     if (conversion_factor/last_conversion_factor - int(conversion_factor/last_conversion_factor)) == 0 :
                         conversion_factor_last_conversion_factor = int(conversion_factor/last_conversion_factor)
@@ -29,10 +29,10 @@ class CustomItem(Item):
                     s = f'{s};{conversion_factor_last_conversion_factor}{last_uom}/{uom}'
                 else:
                     s = f'{s};{conversion_factor}{self.stock_uom}/{uom}'
-            last_uom = uom
-            last_conversion_factor = conversion_factor
             else:
                 pass
+            last_uom = uom
+            last_conversion_factor = conversion_factor
         self.custom_uoms_string = s[1:]
 
     def before_save(self):
