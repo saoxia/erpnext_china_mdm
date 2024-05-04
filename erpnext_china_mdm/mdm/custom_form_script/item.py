@@ -19,9 +19,9 @@ class CustomItem(Item):
                 if last_uom:
                     if (conversion_factor/last_conversion_factor - int(conversion_factor/last_conversion_factor)) == 0 :
                         conversion_factor_last_conversion_factor = int(conversion_factor/last_conversion_factor)
-                    s = f'{s};{conversion_factor_last_conversion_factor}{last_uom}/{uom}'
+                    s = f'{s};{1/conversion_factor_last_conversion_factor}{uom}/{last_uom}'
                 else:
-                    s = f'{s};{conversion_factor}{self.stock_uom}/{uom}'
+                    s = f'{s};{1/conversion_factor}{uom}/{self.stock_uom}'
             elif self.stock_uom != uom and conversion_factor >= 1:
                 if last_uom:
                     if (conversion_factor/last_conversion_factor - int(conversion_factor/last_conversion_factor)) == 0 :
