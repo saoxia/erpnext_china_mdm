@@ -40,8 +40,9 @@ class CustomItem(Item):
             last_uom = uom
             last_conversion_factor = conversion_factor
         self.custom_uoms_string = s.replace(';;',';')
-        if self.custom_uoms_string[0] == ';':
-            self.custom_uoms_string = self.custom_uoms_string[1:]
+        if len(self.custom_uoms_string) > 1 :
+            if self.custom_uoms_string[0] == ';':
+                self.custom_uoms_string = self.custom_uoms_string[1:]
 
     def before_save(self):
         self.set_custom_uoms_string()
