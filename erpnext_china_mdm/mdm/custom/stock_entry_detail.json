@@ -2,7 +2,7 @@
  "custom_fields": [  
   {
   "dt": "Stock Entry Detail",
-  "fetch_from": "item.custom_uoms_string",
+  "fetch_from": "item_code.custom_uoms_string",
   "fetch_if_empty": 0,
   "fieldname": "custom_uoms_string",
   "fieldtype": "Data",
