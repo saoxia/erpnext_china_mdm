@@ -17,12 +17,10 @@ def login_via_wecom(code: str, state: str):
 	def get_userid(code,corpid,corpsecret):
 		access_token = get_access_token(corpid,corpsecret)
 		info = requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo?access_token={access_token}&code={code}').json()
-		#userid = info['userid']
-		#user_info = requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token={access_token}&userid={userid}').json()
-		#info.update({'email':user_info['biz_mail']})
 		uid = info['userid']
-		if 'zhushigroup.cn' not in uid:
-			uid = lower(uid)+'@zhushigroup.cn'
+		uid_link = frappe.db.get_value('Login Name Link WeCom Name', {'wecom_name':uid},'name')
+		if uid_link:
+			uid = uid_link
 		info.update({'email':uid})
 		return info
 	
