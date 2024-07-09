@@ -6,6 +6,9 @@ def has_query_permission(user):
 	if frappe.db.get_value('Has Role',{'parent':user,'role':'System Manager'}):
 		# 如果角色包含管理员，则看到全量
 		conditions = ''
+	elif len(frappe.get_all('Has Role', {'parent':user,'role': ['in', ['网络推广', '销售']]})) > 0:
+		# 如果是网络推广和销售权限，则看到所有公海的线索
+		conditions = '(custom_sea="公海")'
 	else:
 		# 其他情况则只能看到自己,上级可以看到下级
 		users = get_employee_tree(parent=user)
@@ -17,6 +20,9 @@ def has_query_permission(user):
 def has_permission(doc, user, permission_type=None):
 	if frappe.db.get_value('Has Role',{'parent':user,'role':['in',['System Manager']]}):
 		# 如果角色包含管理员，则看到全量
+		return True
+	elif len(frappe.get_all('Has Role', {'parent':user,'role': ['in', ['网络推广', '销售']]})) > 0:
+		# 如果是网络推广和销售权限，则看到所有公海的线索
 		return True
 	else:
 		# 其他情况则只能看到自己,上级可以看到下级
