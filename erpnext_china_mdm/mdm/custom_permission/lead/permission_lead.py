@@ -13,7 +13,7 @@ def has_query_permission(user):
 		users_str = str(tuple(users)).replace(',)',')')
 		conditions = f"(owner in {users_str}) or (lead_owner in {users_str})" 
 		if len(frappe.get_all('Has Role', {'parent':user,'role': ['in', ['网络推广', '销售']]})) > 0:
-			conditions = f"(custom_sea='公海' or owner in {users_str}) or (lead_owner in {users_str})" 
+			conditions = f"(custom_sea='公海') or (owner in {users_str}) or (lead_owner in {users_str})" 
 	return conditions
 
 def has_permission(doc, user, permission_type=None):
