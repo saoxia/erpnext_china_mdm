@@ -18,7 +18,7 @@ def login_via_wecom(code: str, state: str):
 		access_token = get_access_token(corpid,corpsecret)
 		info = requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo?access_token={access_token}&code={code}').json()
 		uid = info['userid']
-		uid_link = frappe.db.get_value('Login Name Link WeCom Name', {'wecom_name':uid},'name')
+		uid_link = frappe.db.get_value('User', {'custom_wecom_uid':uid},'name')
 		if uid_link:
 			uid = uid_link
 		info.update({'email':uid})
