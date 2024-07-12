@@ -217,6 +217,7 @@ required_apps = ['saoxia/erpnext_china']
 
 override_doctype_class = {
     'Item':'erpnext_china_mdm.mdm.custom_form_script.item.CustomItem',
+    'Customer': 'erpnext_china_mdm.mdm.custom_form_script.customer.CustomCustomer',
     #'Stock Entry':'erpnext_china_mdm.mdm.custom_form_script.stock_entry.CustomStockEntry',
 }
 override_whitelisted_methods = {
