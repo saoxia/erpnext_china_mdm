@@ -26,7 +26,7 @@ def has_permission(doc, user, permission_type=None):
 		users = get_employee_tree(parent=user)
 		users.append(user)
 		# if (doc.owner in users) or (doc.lead_owner in users) or (doc.custom_sea == "公海" and len(frappe.get_all('Has Role', {'parent':user,'role': ['in', ['网络推广', '销售']]})) > 0):
-		if (doc.owner in users) or (doc.lead_owner in users) or (len(frappe.get_all('Has Role', {'parent':user,'role': ['in', ['网络推广', '销售']]})) > 0) or (doc.custom_sea == '公海'):
+		if (doc.owner in users) or (doc.lead_owner in users) or (doc.custom_sea == '公海'):
 			return True
 		else:
 			return False
