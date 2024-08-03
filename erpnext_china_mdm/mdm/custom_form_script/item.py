@@ -1,3 +1,4 @@
+import frappe
 from erpnext.stock.doctype.item.item import Item
 
 class CustomItem(Item):
@@ -48,5 +49,13 @@ class CustomItem(Item):
         self.set_custom_uoms_string()
 
 
-
+@frappe.whitelist()
+def get_item_default_warehouse(**kwargs):
+	item_code = kwargs.get('item_code')
+	company = kwargs.get('company')
+	if item_code:
+		item = frappe.get_doc('Item', item_code)
+		for i in item.item_defaults:
+			if i.company == company:
+				return i.default_warehouse 
 

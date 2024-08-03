@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-01 11:29:04.275457",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "app_key",
+  "secret_key",
+  "qcc_api_url"
+ ],
+ "fields": [
+  {
+   "fieldname": "app_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "App Key",
+   "reqd": 1
+  },
+  {
+   "fieldname": "secret_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Secret Key",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qcc_api_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Qcc Api Url",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2024-08-01 11:32:47.949564",
+ "modified_by": "Administrator",
+ "module": "mdm",
+ "name": "QCC Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
