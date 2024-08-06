@@ -9,7 +9,10 @@
   "contact_name",
   "wechat",
   "mobile",
-  "phone"
+  "phone",
+  "source",
+  "lead",
+  "default"
  ],
  "fields": [
   {
@@ -35,12 +38,33 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Phone"
+  },
+  {
+   "default": "Other",
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "label": "Source",
+   "options": "Lead\nOther",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "options": "Lead",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "default",
+   "fieldtype": "Check",
+   "label": "Default"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-08-02 16:54:13.731077",
+ "modified": "2024-08-06 16:56:38.811434",
  "modified_by": "Administrator",
  "module": "mdm",
  "name": "Customer Contact Item",
