@@ -6,8 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "app_key",
-  "secret_key",
-  "qcc_api_url"
+  "secret_key"
  ],
  "fields": [
   {
@@ -23,19 +22,12 @@
    "in_list_view": 1,
    "label": "Secret Key",
    "reqd": 1
-  },
-  {
-   "fieldname": "qcc_api_url",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Qcc Api Url",
-   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-08-01 11:32:47.949564",
+ "modified": "2024-08-06 15:20:53.681780",
  "modified_by": "Administrator",
  "module": "mdm",
  "name": "QCC Settings",

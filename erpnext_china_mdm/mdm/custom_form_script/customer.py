@@ -1,6 +1,7 @@
 # Copyright (c) 2015, Frappe Technologies Pvt. Ltd. and Contributors
 # License: GNU General Public License v3. See license.txt
 
+import re
 import frappe
 from erpnext.selling.doctype.customer.customer import Customer
 from erpnext_china_mdm.utils import qcc
@@ -26,18 +27,21 @@ class CustomCustomer(Customer):
 	def before_save(self):
 		old = self.get_doc_before_save()
 		# 同一条线索只能创建一个客户
-		if not old and frappe.db.exists("Customer", {"lead_name": self.lead_name}):
+		if self.has_value_changed("lead_name") and frappe.db.exists("Customer", {"lead_name": self.lead_name}):
 			frappe.throw("当前线索已经创建过客户，不可重复创建！")
 
-		# 如果公司类型的客户  新增或者是修改客户名称时，通过企查查校验名称
-		if (not old or self.has_value_changed("customer_name")) and self.customer_type == 'Company':
+		# 如果公司类型的客户 修改了客户名或者个人客户修改为公司客户则必须要通过企查查查询
+		if (self.has_value_changed("customer_name") or self.has_value_changed("customer_type")) and self.customer_type == 'Company':
 			config = frappe.get_single("QCC Settings")
-			q = qcc.Qcc(app_key=config.app_key, secret_key=config.secret_key, url=config.qcc_api_url)
-			results = q.request(self.customer_name)
-			if results:
-				frappe.throw(results)
-		
-        # 个人->公司，公司 x->个人
+			q = qcc.Qcc(app_key=config.app_key, secret_key=config.secret_key)
+			code, result = q.name_search(self.customer_name)
+			if code != 200:
+				frappe.throw(result, title="企查查查询失败")
+			else:
+				if self.customer_name not in result:
+					frappe.throw(result, title="请选择以下结果中的一个", as_list=True)
+
+		# 个人->公司，公司 x->个人
 		if old and old.customer_type == 'Company' and self.customer_type == "Individual":
 			frappe.throw("公司客户不可转化为个人客户！")
 		
@@ -46,19 +50,28 @@ class CustomCustomer(Customer):
 
 			lead = frappe.get_doc("Lead", self.lead_name)
 			if old:
-				old_lead = frappe.get_doc("Lead", old.lead_name)
-				for item in self.custom_customer_contacts:
-					if item.mobile == old_lead.mobile_no and item.wechat == old_lead.custom_wechat and item.phone == old_lead.phone:
-						item.contact_name = lead.first_name
-						item.mobile = lead.mobile_no
-						item.wechat = lead.custom_wechat
-						item.phone = lead.phone
-						break
+				if len(self.custom_customer_contacts) == 0:
+					self.add_customer_contact_item(lead)
+				else:
+					for item in self.custom_customer_contacts:
+						if item.source == 'Lead':
+							item.contact_name = lead.first_name
+							item.mobile = lead.mobile_no
+							item.wechat = lead.custom_wechat
+							item.phone = lead.phone
+							break
+					else:
+						self.add_customer_contact_item(lead)
 			else:
-				self.append("custom_customer_contacts", {
-					"contact_name": lead.first_name,
-					"mobile": lead.mobile_no,
-					"wechat": lead.custom_wechat,
-					"phone": lead.phone
-				})
-			
+				self.add_customer_contact_item(lead)
+		
+
+	def add_customer_contact_item(self, lead):
+		self.append("custom_customer_contacts", {
+			"contact_name": lead.first_name,
+			"mobile": lead.mobile_no,
+			"wechat": lead.custom_wechat,
+			"phone": lead.phone,
+			"source": "Lead",
+			"lead": lead.name
+		})
