@@ -11,6 +11,9 @@ class CustomCustomer(Customer):
 	def validate(self):
 		super().validate()
 		self.clean_fields()
+		self.check_customer_exists()
+		self.check_qcc_verify()
+		self.check_customer_type_changed()
 
 	def clean_fields(self):
 		if self.customer_name:
@@ -23,33 +26,36 @@ class CustomCustomer(Customer):
 		if self.lead_name:
 			# frappe.db.set_value("Lead", self.lead_name, "status", "Converted")
 			pass
-
-	def before_save(self):
-		old = self.get_doc_before_save()
+	
+	def check_customer_exists(self):
 		# 同一条线索只能创建一个客户
 		if self.has_value_changed("lead_name") and frappe.db.exists("Customer", {"lead_name": self.lead_name}):
 			frappe.throw("当前线索已经创建过客户，不可重复创建！")
 
+	def check_qcc_verify(self):
 		# 如果公司类型的客户 修改了客户名或者个人客户修改为公司客户则必须要通过企查查查询
 		if (self.has_value_changed("customer_name") or self.has_value_changed("customer_type")) and self.customer_type == 'Company':
 			config = frappe.get_single("QCC Settings")
-			q = qcc.Qcc(app_key=config.app_key, secret_key=config.secret_key)
-			code, result = q.name_search(self.customer_name)
-			if code != 200:
+			q = qcc.QccApiNameSearch(app_key=config.app_key, secret_key=config.secret_key)
+			result = q.name_search(self.customer_name)
+			if result.code != 200:
 				frappe.throw(result, title="企查查查询失败")
 			else:
-				if self.customer_name not in result:
-					frappe.throw(result, title="请选择以下结果中的一个", as_list=True)
+				if self.customer_name not in result.data:
+					frappe.throw(result.data, title="请选择以下结果中的一个", as_list=True)
 
+	def check_customer_type_changed(self):
+		old = self.get_doc_before_save()
 		# 个人->公司，公司 x->个人
 		if old and old.customer_type == 'Company' and self.customer_type == "Individual":
 			frappe.throw("公司客户不可转化为个人客户！")
-		
+
+	def before_save(self):
 		# 如果客户关联的线索发生变化，同时修改客户联系方式子表
 		if self.has_value_changed("lead_name"):
 
 			lead = frappe.get_doc("Lead", self.lead_name)
-			if old:
+			if not self.flags.is_new_doc:
 				if len(self.custom_customer_contacts) == 0:
 					self.add_customer_contact_item(lead)
 				else:
