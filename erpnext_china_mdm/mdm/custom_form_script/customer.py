@@ -12,7 +12,7 @@ class CustomCustomer(Customer):
 		super().validate()
 		self.clean_fields()
 		self.check_customer_exists()
-		self.check_qcc_verify()
+		self.qcc_verify()
 		self.check_customer_type_changed()
 
 	def clean_fields(self):
@@ -32,7 +32,7 @@ class CustomCustomer(Customer):
 		if self.has_value_changed("lead_name") and frappe.db.exists("Customer", {"lead_name": self.lead_name}):
 			frappe.throw("当前线索已经创建过客户，不可重复创建！")
 
-	def check_qcc_verify(self):
+	def qcc_verify(self):
 		# 如果公司类型的客户 修改了客户名或者个人客户修改为公司客户则必须要通过企查查查询
 		if (self.has_value_changed("customer_name") or self.has_value_changed("customer_type")) and self.customer_type == 'Company':
 			config = frappe.get_single("QCC Settings")
@@ -53,31 +53,19 @@ class CustomCustomer(Customer):
 	def before_save(self):
 		# 如果客户关联的线索发生变化，同时修改客户联系方式子表
 		if self.has_value_changed("lead_name"):
-
-			lead = frappe.get_doc("Lead", self.lead_name)
-			if not self.flags.is_new_doc:
-				if len(self.custom_customer_contacts) == 0:
-					self.add_customer_contact_item(lead)
-				else:
-					for item in self.custom_customer_contacts:
-						if item.source == 'Lead':
-							item.contact_name = lead.first_name
-							item.mobile = lead.mobile_no
-							item.wechat = lead.custom_wechat
-							item.phone = lead.phone
-							break
-					else:
-						self.add_customer_contact_item(lead)
-			else:
+			self.custom_customer_contacts = []
+			if self.lead_name:
+				lead = frappe.get_doc("Lead", self.lead_name)
 				self.add_customer_contact_item(lead)
 		
-
 	def add_customer_contact_item(self, lead):
-		self.append("custom_customer_contacts", {
-			"contact_name": lead.first_name,
-			"mobile": lead.mobile_no,
-			"wechat": lead.custom_wechat,
-			"phone": lead.phone,
-			"source": "Lead",
-			"lead": lead.name
-		})
+		contact_name = lead.first_name
+		lead_name = lead.name
+		for info in list(set([lead.custom_wechat, lead.mobile_no, lead.phone])):
+			if info:
+				self.append("custom_customer_contacts", {
+					"contact_name": contact_name,
+					"contact_info": info,
+					"source": "Lead",
+					"lead": lead_name
+				})
