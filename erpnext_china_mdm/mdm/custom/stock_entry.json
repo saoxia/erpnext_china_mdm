@@ -1,5 +1,17 @@
 {
- "custom_fields": [],
+ "custom_fields": [
+    {
+        "dt": "Stock Entry",
+        "fieldname": "in_out_note",
+        "fieldtype": "Small Text",
+        "insert_after": "get_stock_and_rate",
+        "label": "In Out Note",
+        "modified": "2024-05-17 16:27:32.930978",
+        "modified_by": "Administrator",
+        "name": "Stock Entry-in_out_note",
+        "owner": "Administrator"
+       }
+ ],
  "custom_perms": [],
  "doctype": "Stock Entry",
  "links": [],
