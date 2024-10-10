@@ -1,13 +1,12 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:qualification_name",
  "creation": "2024-10-09 18:13:49.923694",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "qualification_name",
-  "deadline",
-  "attachment"
+  "qualification_name"
  ],
  "fields": [
   {
@@ -18,24 +17,15 @@
    "label": "Qualification Name",
    "reqd": 1,
    "unique": 1
-  },
-  {
-   "fieldname": "deadline",
-   "fieldtype": "Date",
-   "label": "Qualification Deadline"
-  },
-  {
-   "fieldname": "attachment",
-   "fieldtype": "Attach",
-   "label": "Attachment"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-09 18:16:10.986374",
+ "modified": "2024-10-10 16:59:51.809247",
  "modified_by": "Administrator",
  "module": "mdm",
  "name": "Qualification",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
