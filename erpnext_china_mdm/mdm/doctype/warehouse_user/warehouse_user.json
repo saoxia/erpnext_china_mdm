@@ -6,22 +6,33 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "warehouse_employee",
   "warehouse_user"
  ],
  "fields": [
   {
+   "fetch_from": "warehouse_employee.user_id",
    "fieldname": "warehouse_user",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Warehouse User",
    "options": "User",
    "reqd": 1
+  },
+  {
+   "fieldname": "warehouse_employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Warehouse Employee",
+   "link_filters": "[[\"Employee\",\"status\",\"=\",\"Active\"],[\"Employee\",\"user_id\",\"is\",\"set\"]]",
+   "options": "Employee",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-03-27 13:39:32.538945",
+ "modified": "2024-10-17 10:19:08.681223",
  "modified_by": "Administrator",
  "module": "mdm",
  "name": "Warehouse User",
