@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:administrative_permits_of_companies_type_name",
+ "creation": "2024-10-18 14:37:42.709098",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_2svw",
+  "administrative_permits_of_companies_type_name",
+  "is_group",
+  "lft",
+  "rgt",
+  "old_parent",
+  "parent_administrative_permits_of_companies_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_2svw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Old Parent",
+   "options": "Administrative Permits of Companies Type"
+  },
+  {
+   "fieldname": "parent_administrative_permits_of_companies_type",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Parent Administrative Permits of Companies Type",
+   "options": "Administrative Permits of Companies Type"
+  },
+  {
+   "fieldname": "administrative_permits_of_companies_type_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Administrative Permits of Companies Type Name",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_tree": 1,
+ "links": [],
+ "modified": "2024-10-18 14:40:50.739152",
+ "modified_by": "Administrator",
+ "module": "mdm",
+ "name": "Administrative Permits of Companies Type",
+ "naming_rule": "By fieldname",
+ "nsm_parent_field": "parent_administrative_permits_of_companies_type",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

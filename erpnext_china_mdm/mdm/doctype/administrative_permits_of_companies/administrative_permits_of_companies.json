@@ -1,0 +1,149 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:administrative_permits_of_companies_number",
+ "creation": "2024-10-17 15:28:26.551052",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "administrative_permits_of_companies_number",
+  "administrative_permits_of_companies_type",
+  "registrant_name",
+  "product_name",
+  "management_category",
+  "model_specifications",
+  "structure_and_compositionmain_components",
+  "scope_of_applicationintended_use",
+  "product_storage_conditions_and_expiration_date",
+  "enclosure",
+  "other_content",
+  "approval_department",
+  "approval_date",
+  "effective_date",
+  "valid_until",
+  "change_situation",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "registrant_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Registrant Name"
+  },
+  {
+   "fieldname": "product_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Product Name"
+  },
+  {
+   "fieldname": "management_category",
+   "fieldtype": "Data",
+   "label": "Management Category"
+  },
+  {
+   "fieldname": "model_specifications",
+   "fieldtype": "Small Text",
+   "label": "Model Specifications"
+  },
+  {
+   "fieldname": "structure_and_compositionmain_components",
+   "fieldtype": "Data",
+   "label": "Structure And Composition/Main Components"
+  },
+  {
+   "fieldname": "scope_of_applicationintended_use",
+   "fieldtype": "Data",
+   "label": "Scope Of Application/Intended Use"
+  },
+  {
+   "fieldname": "product_storage_conditions_and_expiration_date",
+   "fieldtype": "Data",
+   "label": "Product Storage Conditions And Expiration Date"
+  },
+  {
+   "fieldname": "enclosure",
+   "fieldtype": "Attach",
+   "label": "Enclosure"
+  },
+  {
+   "fieldname": "other_content",
+   "fieldtype": "Data",
+   "label": "Other Content"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "approval_department",
+   "fieldtype": "Data",
+   "label": "Approval Department"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "label": "Effective Date"
+  },
+  {
+   "fieldname": "valid_until",
+   "fieldtype": "Date",
+   "label": "Valid Until"
+  },
+  {
+   "fieldname": "change_situation",
+   "fieldtype": "Small Text",
+   "label": "Change Situation"
+  },
+  {
+   "fieldname": "administrative_permits_of_companies_type",
+   "fieldtype": "Link",
+   "label": "Administrative Permits of Companies Type",
+   "link_filters": "[[\"Administrative Permits of Companies Type\",\"is_group\",\"=\",0]]",
+   "options": "Administrative Permits of Companies Type"
+  },
+  {
+   "fieldname": "administrative_permits_of_companies_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Administrative Permits of Companies Number",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-18 15:01:59.048135",
+ "modified_by": "Administrator",
+ "module": "mdm",
+ "name": "Administrative Permits of Companies",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
