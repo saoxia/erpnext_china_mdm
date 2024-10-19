@@ -39,7 +39,7 @@ def get_checkin_userid_from_tag(access_token, tag_id):
 
 
 @frappe.whitelist()
-def update_checkin_group_users(**kwargs):
+def get_checkin_group_users(**kwargs):
 	access_token = get_access_token()
 	groups = get_checkin_groups(access_token)
 	result = []
