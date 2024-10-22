@@ -220,6 +220,7 @@ override_doctype_class = {
     'Customer': 'erpnext_china_mdm.mdm.custom_form_script.customer.CustomCustomer',
     'Address': 'erpnext_china_mdm.mdm.custom_form_script.address.CustomAddress',
     #'Stock Entry':'erpnext_china_mdm.mdm.custom_form_script.stock_entry.CustomStockEntry',
+    'Supplier': 'erpnext_china_mdm.mdm.custom_form_script.supplier.CustomSupplier',
 }
 override_whitelisted_methods = {
     "erpnext_china.utils.oauth2_logins.login_via_wecom": "erpnext_china_mdm.utils.oauth2_logins.login_via_wecom",
