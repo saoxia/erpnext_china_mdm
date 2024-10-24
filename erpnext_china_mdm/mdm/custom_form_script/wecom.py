@@ -42,7 +42,9 @@ def get_checkin_userid_from_tag(access_token, tag_id):
 def get_checkin_group_users(**kwargs):
 	access_token = get_access_token()
 	groups = get_checkin_groups(access_token)
-	result = []
+
+	will_add = []
+	will_del = []
 	for group in groups:
 		group_id = group.get('groupid')
 		group_create_userid = group.get('create_userid')
@@ -58,18 +60,29 @@ def get_checkin_group_users(**kwargs):
 			tag_user_list = get_checkin_userid_from_tag(access_token, int(tag.tag))
 			tag_user_id_set = tag_user_id_set.union(set([user.get('userid') for user in tag_user_list]))
 		group_user_id_set = set(group_user_id_list)
+		
 		# 标签中有，规则中没有则新增
 		add_users = tag_user_id_set - group_user_id_set
+		if len(add_users) > 0:
+			data = {
+				"group_id": group_id,
+				"group_name": group_name,
+				"group_create_userid": group_create_userid,
+				"users": list(add_users)
+			}
+			will_add.append(data)
 		# 标签中没有，规则中有则删除
 		del_users = group_user_id_set - tag_user_id_set
-		data = {
-			"group_id": group_id,
-			"group_name": group_name,
-			"group_create_userid": group_create_userid,
-			"add_users": list(add_users),
-			"del_users": list(del_users)
-		}
-		result.append(data)
+		if len(del_users) > 0:
+			data = {
+				"group_id": group_id,
+				"group_name": group_name,
+				"group_create_userid": group_create_userid,
+				"users": list(del_users)
+			}
+			will_del.append(data)
+	
 	return {
-		"data": result
+		"add": will_add,
+		"del": will_del
 	}
